@@ -40,7 +40,7 @@
       --sans: 'DM Sans', system-ui, sans-serif;
       --mono: 'DM Mono', monospace;
 
-      --max: 960px;
+      --max: 780px;
       --pad: clamp(1.25rem, 4vw, 2.5rem);
     }
 
@@ -243,7 +243,19 @@
     }
     .pillar-tab:last-child { border-right: none; }
     .pillar-tab:hover:not(.active) { color: var(--text); background: var(--bg-1); }
+    /* Small icon for tabs: replaced emoji with simple CSS shapes */
     .tab-emoji { font-size: 0.85rem; }
+    .tab-shape {
+      display: inline-block;
+      width: 0.64rem; height: 0.64rem;
+      background: currentColor;
+      flex-shrink: 0;
+      vertical-align: middle;
+      transition: transform 0.12s ease;
+    }
+    .tab-shape.circle { border-radius: 50%; }
+    .tab-shape.square { border-radius: 1px; }
+    .tab-shape.diamond { transform: rotate(45deg); }
 
     .pillar-tab.active-mind  { background: rgba(85,144,240,0.1); color: var(--blue); }
     .pillar-tab.active-body  { background: rgba(82,173,126,0.09); color: var(--green); }
@@ -438,26 +450,44 @@
       border: 1px solid var(--border);
       margin-top: 2rem;
     }
+    .free-group-header {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.55rem 1rem;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .free-group-header + .free-group-header,
+    .free-card + .free-group-header {
+      border-top: 1px solid var(--border);
+    }
+    .fgh-bar {
+      width: 2px; height: 12px; flex-shrink: 0;
+    }
+    .fgh-label {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
     .free-card {
-      background: var(--bg-1); padding: 1.1rem;
+      background: var(--bg-1); padding: 1rem 1rem 1rem 1rem;
       text-decoration: none; color: inherit;
-      display: flex; flex-direction: column; gap: 0.3rem;
+      display: flex; flex-direction: column; gap: 0.25rem;
       transition: background 0.12s; position: relative;
     }
     .free-card:hover { background: var(--bg-2); }
     .free-card:hover .fc-arrow { opacity: 1; }
     .fc-arrow {
-      position: absolute; top: 0.9rem; right: 0.9rem;
-      font-size: 0.7rem; color: var(--dim); opacity: 0;
+      position: absolute; top: 0.85rem; right: 0.85rem;
+      font-size: 0.65rem; color: var(--dim); opacity: 0;
       transition: opacity 0.12s;
     }
     .fc-tag {
-      font-family: var(--mono); font-size: 0.6rem;
+      font-family: var(--mono); font-size: 0.58rem;
       letter-spacing: 0.1em; text-transform: uppercase;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.1rem;
     }
-    .fc-title { font-size: 0.825rem; font-weight: 500; color: var(--text); }
-    .fc-meta { font-size: 0.7rem; color: var(--dim); }
+    .fc-title { font-size: 0.8rem; font-weight: 500; color: var(--text); }
+    .fc-meta { font-size: 0.68rem; color: var(--dim); margin-top: 0.1rem; }
 
     /* ── ABOUT SECTION ── */
     .about-inner {
@@ -582,13 +612,13 @@
     <!-- TABS -->
     <div class="pillar-tabs reveal" id="pillarTabs">
       <button class="pillar-tab active-mind active" data-pillar="mind" onclick="switchPillar('mind')">
-        <span class="tab-emoji">🧠</span> Mind
+        <span class="tab-shape circle" aria-hidden="true"></span> Mind
       </button>
       <button class="pillar-tab" data-pillar="body" onclick="switchPillar('body')">
-        <span class="tab-emoji">💪</span> Body
+        <span class="tab-shape square" aria-hidden="true"></span> Body
       </button>
       <button class="pillar-tab" data-pillar="soul" onclick="switchPillar('soul')">
-        <span class="tab-emoji">🔥</span> Soul
+        <span class="tab-shape diamond" aria-hidden="true"></span> Soul
       </button>
     </div>
 
@@ -639,12 +669,12 @@
               <div class="phase-meta"><span class="badge bf">free</span><span class="phase-count">6 lessons</span><span class="phase-chev">▾</span></div>
             </div>
             <div class="phase-body">
-              <a href="#" class="lesson is-link"><span class="lesson-name">Mac Terminal</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">Windows Terminal</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">Install VS Code</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">Markdown</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">What is a Browser</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">DevTools CSS Inspection</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip1" class="lesson is-link"><span class="lesson-name">Mac Terminal</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip1" class="lesson is-link"><span class="lesson-name">Windows Terminal</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip1" class="lesson is-link"><span class="lesson-name">Install VS Code</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip1" class="lesson is-link"><span class="lesson-name">Markdown</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip1" class="lesson is-link"><span class="lesson-name">What is a Browser</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip1" class="lesson is-link"><span class="lesson-name">DevTools CSS Inspection</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
             </div>
           </div>
           <div class="phase">
@@ -654,11 +684,11 @@
               <div class="phase-meta"><span class="badge bf">free</span><span class="phase-count">5 lessons</span><span class="phase-chev">▾</span></div>
             </div>
             <div class="phase-body">
-              <a href="#" class="lesson is-link"><span class="lesson-name">Install Git</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">Git vs GitHub</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">Undo Mistakes in Git</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">Good Commit Messages</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
-              <a href="#" class="lesson is-link"><span class="lesson-name">Collaborate on GitHub</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip2" class="lesson is-link"><span class="lesson-name">Install Git</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip2" class="lesson is-link"><span class="lesson-name">Git vs GitHub</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip2" class="lesson is-link"><span class="lesson-name">Undo Mistakes in Git</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip2" class="lesson is-link"><span class="lesson-name">Good Commit Messages</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
+              <a href="https://juliusdarang.gumroad.com/l/zerotoaip2" class="lesson is-link"><span class="lesson-name">Collaborate on GitHub</span><span class="lesson-arrow">↗</span><span class="badge bf">free</span></a>
             </div>
           </div>
           <div class="phase">
@@ -945,15 +975,15 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-label" style="color:var(--green)">Free Access</div>
-      <h2 class="section-title">Start here.<br><em>No credit card.</em></h2>
-      <p class="section-desc">The first phases of each product are free. Download directly — no sign-up required.</p>
+      <h2 class="section-title">Start here.<br><em>No requirements.</em></h2>
+      <p class="section-desc">Learn something you can use to change your life.</p>
     </div>
     <div class="free-grid reveal">
 
       <!-- Phase 1 -->
-      <div class="free-section-header" style="grid-column:1/-1; padding:0.6rem 1rem; background:var(--bg-2); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.5rem;">
-        <span style="width:2px;height:14px;background:#5590f0;display:inline-block;flex-shrink:0;"></span>
-        <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);">Zero to AI Builder · Phase 1 — Terminal & Dev Tools</span>
+      <div class="free-group-header">
+        <span class="fgh-bar" style="background:#5590f0"></span>
+        <span class="fgh-label" style="color:var(--blue)">Zero to AI Builder · Phase 1 — Terminal & Dev Tools</span>
       </div>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 1</span><span class="fc-title">Mac Terminal</span><span class="fc-meta">PDF · Foundation</span></a>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 1</span><span class="fc-title">Windows Terminal</span><span class="fc-meta">PDF · Foundation</span></a>
@@ -963,9 +993,9 @@
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 1</span><span class="fc-title">DevTools CSS Inspection</span><span class="fc-meta">PDF · Foundation</span></a>
 
       <!-- Phase 2 -->
-      <div class="free-section-header" style="grid-column:1/-1; padding:0.6rem 1rem; background:var(--bg-2); border-bottom:1px solid var(--border); border-top:1px solid var(--border); display:flex; align-items:center; gap:0.5rem;">
-        <span style="width:2px;height:14px;background:#5590f0;display:inline-block;flex-shrink:0;"></span>
-        <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);">Zero to AI Builder · Phase 2 — Git & GitHub</span>
+      <div class="free-group-header">
+        <span class="fgh-bar" style="background:#5590f0"></span>
+        <span class="fgh-label" style="color:var(--blue)">Zero to AI Builder · Phase 2 — Git & GitHub</span>
       </div>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 2</span><span class="fc-title">Install Git</span><span class="fc-meta">PDF · Git & GitHub</span></a>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 2</span><span class="fc-title">Git vs GitHub</span><span class="fc-meta">PDF · Git & GitHub</span></a>
@@ -974,9 +1004,9 @@
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 2</span><span class="fc-title">Collaborate on GitHub</span><span class="fc-meta">PDF · Git & GitHub</span></a>
 
       <!-- Phase 3 -->
-      <div class="free-section-header" style="grid-column:1/-1; padding:0.6rem 1rem; background:var(--bg-2); border-bottom:1px solid var(--border); border-top:1px solid var(--border); display:flex; align-items:center; gap:0.5rem;">
-        <span style="width:2px;height:14px;background:#5590f0;display:inline-block;flex-shrink:0;"></span>
-        <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);">Zero to AI Builder · Phase 3 — Web Development</span>
+      <div class="free-group-header">
+        <span class="fgh-bar" style="background:#5590f0"></span>
+        <span class="fgh-label" style="color:var(--blue)">Zero to AI Builder · Phase 3 — Web Development</span>
       </div>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 3</span><span class="fc-title">Basic Web Structure</span><span class="fc-meta">PDF · Web Dev</span></a>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 3</span><span class="fc-title">CSS Flexbox</span><span class="fc-meta">PDF · Web Dev</span></a>
@@ -989,9 +1019,9 @@
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 3</span><span class="fc-title">What is an API</span><span class="fc-meta">PDF · Web Dev</span></a>
 
       <!-- Phase 4 -->
-      <div class="free-section-header" style="grid-column:1/-1; padding:0.6rem 1rem; background:var(--bg-2); border-bottom:1px solid var(--border); border-top:1px solid var(--border); display:flex; align-items:center; gap:0.5rem;">
-        <span style="width:2px;height:14px;background:#5590f0;display:inline-block;flex-shrink:0;"></span>
-        <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);">Zero to AI Builder · Phase 4 — Python Fundamentals</span>
+      <div class="free-group-header">
+        <span class="fgh-bar" style="background:#5590f0"></span>
+        <span class="fgh-label" style="color:var(--blue)">Zero to AI Builder · Phase 4 — Python Fundamentals</span>
       </div>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 4</span><span class="fc-title">Mac Install Python</span><span class="fc-meta">PDF · Python</span></a>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 4</span><span class="fc-title">Windows Install Python</span><span class="fc-meta">PDF · Python</span></a>
@@ -1006,9 +1036,9 @@
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:var(--blue)">Phase 4</span><span class="fc-title">Python Calculator with Tkinter</span><span class="fc-meta">PDF · Python</span></a>
 
       <!-- AI Agents Level 1 -->
-      <div class="free-section-header" style="grid-column:1/-1; padding:0.6rem 1rem; background:var(--bg-2); border-bottom:1px solid var(--border); border-top:1px solid var(--border); display:flex; align-items:center; gap:0.5rem;">
-        <span style="width:2px;height:14px;background:#8c5af5;display:inline-block;flex-shrink:0;"></span>
-        <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#8c5af5;">AI Agents Levels · Level 1 — Single Agent</span>
+      <div class="free-group-header">
+        <span class="fgh-bar" style="background:#8c5af5"></span>
+        <span class="fgh-label" style="color:#8c5af5">AI Agents Levels · Level 1 — Single Agent</span>
       </div>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:#8c5af5">Level 1</span><span class="fc-title">What Is an Agent</span><span class="fc-meta">PDF · Single Agent</span></a>
       <a href="#" class="free-card"><span class="fc-arrow">↗</span><span class="fc-tag" style="color:#8c5af5">Level 1</span><span class="fc-title">Anatomy of an Agent</span><span class="fc-meta">PDF · Single Agent</span></a>
