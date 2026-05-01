@@ -143,11 +143,19 @@
       padding: 0.58rem 1.1rem;
       font-size: 0.8rem; font-weight: 500; font-family: var(--sans);
       cursor: pointer; border: none; white-space: nowrap;
-      transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+      transition: opacity 0.15s, color 0.15s, border-color 0.15s, background 0.15s;
       text-decoration: none;
     }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { opacity: 0.85; }
+    /* Primary: now ghost with accent border/text — less aggressive */
+    .btn-primary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(215,118,0,0.35);
+    }
+    .btn-primary:hover {
+      border-color: var(--accent);
+      background: rgba(215,118,0,0.06);
+    }
     .btn-ghost { background: transparent; color: var(--dim); border: 1px solid var(--border-2); }
     .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
 
@@ -251,7 +259,7 @@
     .phase-body { display: none; border-top: 1px solid var(--border); background: var(--bg); }
     .phase.open .phase-body { display: block; }
 
-    /* ── BADGES — monochrome, accent for free only ── */
+    /* ── BADGES ── */
     .badge {
       font-family: var(--mono); font-size: 0.58rem;
       letter-spacing: 0.07em; text-transform: uppercase;
@@ -279,58 +287,6 @@
     .lesson-name.paid { color: var(--text); }
     .lesson-arrow { font-size: 0.6rem; color: var(--dim); opacity: 0; transition: opacity 0.12s; }
 
-    /* ── FREE SECTION ── */
-    .free-intro {
-      font-family: var(--mono); font-size: 0.62rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--dim); margin-top: 0.5rem;
-    }
-    .free-intro span { color: var(--accent); }
-
-    .free-grid {
-      display: flex; flex-direction: column;
-      border: 1px solid var(--border); margin-top: 1.75rem; overflow: hidden;
-    }
-    .free-group { display: flex; flex-direction: column; }
-    .free-group + .free-group { border-top: 1px solid var(--border); }
-    .free-group-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.5rem 1rem; background: var(--bg-2); border-bottom: 1px solid var(--border);
-    }
-    .fgh-left { display: flex; align-items: center; gap: 0.55rem; }
-    .fgh-bar { width: 2px; height: 11px; flex-shrink: 0; background: var(--accent); }
-    .fgh-label {
-      font-family: var(--mono); font-size: 0.57rem;
-      letter-spacing: 0.11em; text-transform: uppercase; color: var(--dim);
-    }
-    .fgh-count {
-      font-family: var(--mono); font-size: 0.57rem;
-      color: var(--dim); background: var(--bg); border: 1px solid var(--border); padding: 0.1rem 0.4rem;
-    }
-    .free-cards-row { display: grid; grid-template-columns: repeat(3,1fr); }
-    .free-card {
-      background: var(--bg-1); padding: 0.8rem 0.9rem;
-      text-decoration: none; color: inherit;
-      display: flex; flex-direction: column; gap: 0.15rem;
-      transition: background 0.12s; position: relative;
-      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .free-card:nth-child(3n) { border-right: none; }
-    .free-group:last-child .free-cards-row:last-child .free-card { border-bottom: none; }
-    .free-card:hover { background: var(--bg-2); }
-    .free-card:hover .fc-arrow { opacity: 1; }
-    .fc-arrow {
-      position: absolute; top: 0.7rem; right: 0.75rem;
-      font-size: 0.6rem; color: var(--dim); opacity: 0; transition: opacity 0.12s;
-    }
-    .fc-badge {
-      font-family: var(--mono); font-size: 0.53rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.15rem;
-    }
-    .fc-title { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; }
-    .fc-meta { font-size: 0.65rem; color: var(--dim); }
-
     /* ── ABOUT ── */
     .about-inner {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -338,12 +294,6 @@
     }
     .about-title { font-size: 1rem; font-weight: 500; color: var(--bright); margin-bottom: 0.75rem; }
     .about-body { font-size: 0.85rem; color: var(--dim); line-height: 1.8; font-weight: 300; }
-    .about-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 1.25rem; }
-    .about-tag {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--dim); border: 1px solid var(--border); padding: 0.18rem 0.5rem;
-    }
     .about-rows { display: flex; flex-direction: column; }
     .about-row {
       display: flex; justify-content: space-between; align-items: baseline;
@@ -354,7 +304,7 @@
     .ar-v { font-size: 0.8rem; color: var(--text); font-weight: 500; }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 1.75rem 0; }
+    footer { border-top: 1px solid var(--border); padding: 1rem 0; }
     .footer-inner {
       max-width: var(--max); margin-inline: auto; padding-inline: var(--pad);
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
@@ -379,15 +329,10 @@
       .product-card { grid-template-columns: 1fr; gap: 1.25rem; }
       .pc-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; align-items: center; }
       .about-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .free-cards-row { grid-template-columns: repeat(2,1fr); }
-      .free-card:nth-child(3n) { border-right: 1px solid var(--border); }
-      .free-card:nth-child(2n) { border-right: none; }
     }
     @media(max-width:480px) {
       .nav-links { display: none; }
       .hero-stats { display: none; }
-      .free-cards-row { grid-template-columns: 1fr; }
-      .free-card { border-right: none; }
       .product-tabs { width: 100%; }
       .product-tab { flex: 1; text-align: center; }
     }
@@ -401,7 +346,7 @@
     <span class="nav-logo">Julius Darang</span>
     <ul class="nav-links">
       <li><a href="#products">Products</a></li>
-      <li><a href="#free">Free</a></li>
+      <li><a href="#curriculum">Curriculum</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="https://gumroad.com" target="_blank" class="nav-cta">Gumroad ↗</a></li>
     </ul>
@@ -416,13 +361,13 @@
     <p class="hero-sub">Structured PDF slide curricula — from terminal basics to autonomous AI agents. No fluff. Hands-on from day one.</p>
     <div class="hero-btns">
       <a href="#products" class="btn btn-primary">Browse products ↓</a>
-      <a href="#free" class="btn btn-ghost">Start for free</a>
+      <a href="#curriculum" class="btn btn-ghost">See curriculum</a>
     </div>
 
     <div class="ticker-wrap">
       <div class="ticker-track">
         <span class="ticker-item">Terminal<span class="ticker-dot"></span></span>
-        <span class="ticker-item">Git & GitHub<span class="ticker-dot"></span></span>
+        <span class="ticker-item">Git<span class="ticker-dot"></span></span>
         <span class="ticker-item">HTML & CSS<span class="ticker-dot"></span></span>
         <span class="ticker-item">Python<span class="ticker-dot"></span></span>
         <span class="ticker-item">Pandas<span class="ticker-dot"></span></span>
@@ -432,9 +377,8 @@
         <span class="ticker-item">AI Agents<span class="ticker-dot"></span></span>
         <span class="ticker-item">Agentic Coding<span class="ticker-dot"></span></span>
         <span class="ticker-item">Automations<span class="ticker-dot"></span></span>
-        <span class="ticker-item">PDF Slides<span class="ticker-dot"></span></span>
         <span class="ticker-item">Terminal<span class="ticker-dot"></span></span>
-        <span class="ticker-item">Git & GitHub<span class="ticker-dot"></span></span>
+        <span class="ticker-item">Git<span class="ticker-dot"></span></span>
         <span class="ticker-item">HTML & CSS<span class="ticker-dot"></span></span>
         <span class="ticker-item">Python<span class="ticker-dot"></span></span>
         <span class="ticker-item">Pandas<span class="ticker-dot"></span></span>
@@ -444,7 +388,6 @@
         <span class="ticker-item">AI Agents<span class="ticker-dot"></span></span>
         <span class="ticker-item">Agentic Coding<span class="ticker-dot"></span></span>
         <span class="ticker-item">Automations<span class="ticker-dot"></span></span>
-        <span class="ticker-item">PDF Slides<span class="ticker-dot"></span></span>
       </div>
     </div>
 
@@ -523,8 +466,7 @@
       <div class="section-label">Curriculum</div>
       <h2 class="section-title">What's inside?<br><em>Peek the curriculum structure.</em></h2>
       <p class="section-desc">Each product is a series of PDF slide decks. Here's how the lessons are organized within the Zero to AI Builder track.</p>
-    </div>  
-    <!-- Curriculum tabs -->
+    </div>
     <div class="product-tabs reveal" id="productTabs">
       <button class="product-tab active" id="ztab-btn" onclick="switchProduct('ztab')">Zero to AI Builder</button>
       <button class="product-tab" id="aal-btn" onclick="switchProduct('aal')">AI Agents Levels</button>
@@ -754,6 +696,25 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-inner">
+      <div class="reveal">
+        <h2 class="about-title">Structured tutorials for people who want to build.</h2>
+        <p class="about-body">PDF slide decks designed to take you from zero to shipping real things with AI. No video bloat, no filler — just clear, visual, self-paced curricula you can move through at your own speed. Two tracks: one for beginners, one for anyone ready to go deeper into agents.</p>
+      </div>
+      <div class="about-rows reveal">
+        <div class="about-row"><span class="ar-l">Format</span><span class="ar-v">PDF slide decks</span></div>
+        <div class="about-row"><span class="ar-l">Delivery</span><span class="ar-v">Instant · Gumroad</span></div>
+        <div class="about-row"><span class="ar-l">Access</span><span class="ar-v">Lifetime</span></div>
+        <div class="about-row"><span class="ar-l">Prerequisite</span><span class="ar-v">None for Product 01</span></div>
+        <div class="about-row"><span class="ar-l">Writing</span><span class="ar-v">Substack — Conquer Self</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -774,7 +735,6 @@
 </footer>
 
 <script>
-  // Product tab switcher
   function switchProduct(p) {
     const ztab = document.getElementById('product-ztab');
     const aal  = document.getElementById('product-aal');
@@ -789,10 +749,8 @@
     }
   }
 
-  // Phase accordion
   function togglePhase(h) { h.parentElement.classList.toggle('open'); }
 
-  // Active nav on scroll
   const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
   const navObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -805,7 +763,6 @@
   }, { rootMargin: '-40% 0px -55% 0px' });
   document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
 
-  // Scroll reveal
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
